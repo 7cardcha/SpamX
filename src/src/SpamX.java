@@ -1,6 +1,8 @@
 package src;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -13,6 +15,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SpamX extends JavaPlugin
 {
 	public static File file;
+	
+	public static FileWriter log;
+	
+	public static BufferedWriter logFile;
+	
 	public static FileConfiguration config;
 	
 	public static HashMap<String, Integer> spamHash = new HashMap<String, Integer>();
@@ -70,7 +77,9 @@ public class SpamX extends JavaPlugin
 				} 
 				catch (IOException e) 
 				{
+					sender.sendMessage("Failed to write to config file.");
 					e.printStackTrace();
+					return false;
 				}
 				
 				sender.sendMessage("Player offense level set to " + args[1]);
@@ -96,10 +105,19 @@ public class SpamX extends JavaPlugin
 				file.createNewFile();
 			} catch (IOException e) 
 			{
+				System.out.println("!!!!Failed to load config for SpamX!!!!");
 				e.printStackTrace();
 			}
 		}
 		config = YamlConfiguration.loadConfiguration(file);
+		
+		try {
+			log = new FileWriter("spamx.log");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logFile = new BufferedWriter(log);
 		
 	}
 	
