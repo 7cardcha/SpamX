@@ -38,7 +38,7 @@ public class EventManager implements Listener
 			SpamX.spamHash.put(name, SpamX.spamHash.get(name) + 1);
 		}
 		
-		if(SpamX.spamHash.get(name) >= SpamX.config.getInt("limit"))
+		if(SpamX.spamHash.get(name) >= SpamX.config.getInt("limit") && !event.getPlayer().hasPermission("SpamX.bypass"))
 		{
 			Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "kick " + name);
 			

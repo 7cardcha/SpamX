@@ -1,6 +1,8 @@
 main: src.SpamX
 name: SpamX
-version: 1.2.3
+version: 1.2.4
+
+
 
 commands:
    xreload:
@@ -18,4 +20,9 @@ commands:
       usage: /xsetoffense <player> <number>
       permission: SpamX.setlevel
       permission-message: You don't have permission.
+
+permissions:
+   SpamX.bypass:
+      description: Allows player to bypass spam check.
+      default: op
 
